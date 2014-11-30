@@ -520,6 +520,6 @@ public class Interface extends JFrame {
 		gbc_btnArret.gridx = 7;
 		gbc_btnArret.gridy = 12;
 		contentPane.add(btnArret, gbc_btnArret);
-	}
+	} boby biby
 
 }
