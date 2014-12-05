@@ -6,6 +6,7 @@ package projetJava;
 import java.awt.Color;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,14 +25,14 @@ public class PanelJeu extends JPanel {
 	private JLabel[][] tabLabel;
 	private JPanel recup = new JPanel();
 	private GridLayout layoutRecup = new GridLayout();
-	private JLabel joueur = new JLabel("Joueur en cours : ");
+	private JLabel joueur = new JLabel("Joueur en cours : Joueur1 ");
 	
 	public PanelJeu() {
 		setSize(500, 500);
+		setLayout(null);
 		layout.setColumns(8);
 		layout.setRows(8);
 		plateau.setLayout(layout);
-		plateau.setBounds(0, 0, 550, 550);
 		tabButton = new JButton[8][8];
 		for (int ligne = 0; ligne < 8; ligne ++) {
 			for (int colonne = 0; colonne < 8; colonne ++) {
@@ -57,13 +58,14 @@ public class PanelJeu extends JPanel {
 		}
 		recup.setBackground(Color.WHITE);
 		
-		Box jeu = Box.createHorizontalBox();
-		Box info = Box.createVerticalBox();
-		info.add(joueur);
-		info.add(recup);
-		jeu.add(plateau);
-		jeu.add(info);
-		this.add(jeu);
+		plateau.setBounds(2,2, 550, 550);
+		this.add(plateau);
+		joueur.setBounds(560,2, 225, 30);
+		this.add(joueur);
+		joueur.setBorder(BorderFactory.createLineBorder(Color.black));
+		recup.setBounds(560, 40, 225, 508);
+		recup.setBorder(BorderFactory.createLineBorder(Color.black));
+		this.add(recup);
 	}
 
 	/**
@@ -75,3 +77,4 @@ public class PanelJeu extends JPanel {
 	}
 
 }
+

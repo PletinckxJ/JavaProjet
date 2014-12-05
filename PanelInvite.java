@@ -16,39 +16,39 @@ public class PanelInvite extends JPanel implements ActionListener {
 	
 	private JTextField joueur1 = new JTextField();
 	private JTextField joueur2 = new JTextField();
-	private Box main = Box.createVerticalBox();
-	private BorderLayout layout = new BorderLayout(0, 0);
 	
 	public PanelInvite() {
 		setSize(500, 500);
-		setLayout(layout);
+		setLayout(null);
 		JLabel invite1 = new JLabel("Joueur 1 :");
 		joueur1.setMaximumSize(new Dimension(150, 30));
-		Box boxJoueur1 = Box.createHorizontalBox();
-		boxJoueur1.add(invite1);
-		boxJoueur1.add(joueur1);
-	
+		invite1.setBounds(250,100,100,50);
+		joueur1.setBounds(350, 110, 150, 30);
+		this.add(invite1);
+		this.add(joueur1);
 		JLabel invite2 = new JLabel("Joueur 2 :");
 		joueur2.setMaximumSize(new Dimension(150, 30));
-		Box boxJoueur2 = Box.createHorizontalBox();
-		boxJoueur2.add(invite2);
-		boxJoueur2.add(joueur2);
+		invite2.setBounds(250, 140, 100, 50);
+		joueur2.setBounds(350, 150, 150, 30);
+		this.add(invite2);
+		this.add(joueur2);
 		
 		JButton start = new JButton("Start");
 		start.addActionListener(this);
+		start.setBounds(300, 220, 150, 30);
+		this.add(start);
 		
-		main.add(boxJoueur1);
-		main.add(boxJoueur2);
-		main.add(start);
-		this.add(main);
+
 	}
 	
 
 	public void actionPerformed(ActionEvent ev) {
 		PanelJeu jeu = new PanelJeu();
-		this.remove(main);
-		
-		this.add(jeu, BorderLayout.CENTER);
-	}
+		this.removeAll();
+		this.revalidate();
+		this.repaint();
+		jeu.setBounds(0,0, 810,600);
+		this.add(jeu);
+		}
 
 }

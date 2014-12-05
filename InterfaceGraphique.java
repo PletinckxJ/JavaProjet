@@ -1,5 +1,5 @@
 /**
- * 
+ * Projet.
  */
 package projetJava;
 
@@ -16,12 +16,13 @@ public class InterfaceGraphique extends JFrame {
 
 	private Plateau echiquier;
 	private PanelInvite menu = new PanelInvite();
+	private PanelJeu jeu = new PanelJeu();
 	
 	public InterfaceGraphique() {
 		
 		super("Jeu d'échec");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 700, 500);
+		setBounds(200, 200, 810, 600);
 		
 		
 		getContentPane().add(menu);
