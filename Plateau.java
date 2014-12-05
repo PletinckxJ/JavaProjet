@@ -38,18 +38,18 @@ public class Plateau {
 		// initialise les deux rangées de pions de différentes couleurs.
 		for(int i = 0; i < 8; i++) {
 		echiquier[1][i].setPiece(new Pion(1, i, "blanc"));
-		echiquier[6][i] = new Case(new Pion(6, i, "noir"));
+		echiquier[6][i].setPiece(new Pion(6, i, "noir"));
 		}
 		// Initialise les rangées de pièces spéciales dans les deux couleurs.
 		for (int j = 0; j < 8 ; j = j + 7) {
-			echiquier[j][0] = new Case(new Tour(j, 0, couleur));
-			echiquier[j][1] = new Case(new Cavalier(j, 1, couleur));
-			echiquier[j][2] = new Case(new Fou(j, 2, couleur));
-			echiquier[j][3] = new Case(new Reine(j, 3, couleur));
-			echiquier[j][4] = new Case(new Roi(j, 4, couleur));
-			echiquier[j][5] = new Case(new Fou(j, 5, couleur));
-			echiquier[j][6] = new Case(new Cavalier(j, 6, couleur));
-			echiquier[j][7] = new Case(new Tour(j, 7, couleur));
+			echiquier[j][0].setPiece(new Tour(j, 0, couleur));
+			echiquier[j][1].setPiece(new Cavalier(j, 1, couleur));
+			echiquier[j][2].setPiece(new Fou(j, 2, couleur));
+			echiquier[j][3].setPiece(new Reine(j, 3, couleur));
+			echiquier[j][4].setPiece(new Roi(j, 4, couleur));
+			echiquier[j][5].setPiece(new Fou(j, 5, couleur));
+			echiquier[j][6].setPiece(new Cavalier(j, 6, couleur));
+			echiquier[j][7].setPiece(new Tour(j, 7, couleur));
 			couleur = "noir";
 		}
 		
