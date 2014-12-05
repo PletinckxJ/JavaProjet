@@ -17,7 +17,10 @@ public class Plateau {
 	 * Constructeur à nul.
 	 */
 	public Plateau() {
-		setEchiquier(null);
+		echiquier = new Case[8][8];
+		for (int ligne = 0; ligne <= 7; ligne++)
+			for (int colonne = 0; colonne <= 7; colonne++)
+				echiquier[ligne][colonne] = new Case();
 	}
 	/**
 	 * Constructeur à variable donnée.
@@ -31,24 +34,23 @@ public class Plateau {
 	 */
 	
 	public void initialiser() {
+		String couleur = new String("blanc");
 		// initialise les deux rangées de pions de différentes couleurs.
 		for(int i = 0; i < 8; i++) {
-		echiquier[1][i] = new Case(new Pion(1, i, "blanc"));
+		echiquier[1][i].setPiece(new Pion(1, i, "blanc"));
 		echiquier[6][i] = new Case(new Pion(6, i, "noir"));
 		}
 		// Initialise les rangées de pièces spéciales dans les deux couleurs.
-		for (String couleur="blanc"; !couleur.equals("noir"); couleur = "noir") {
-			for (int j = 0; j != 7; j = 7) {
-				echiquier[j][0] = new Case(new Tour(j, 0, couleur));
-				echiquier[j][1] = new Case(new Cavalier(j, 1, couleur));
-				echiquier[j][2] = new Case(new Fou(j, 2, couleur));
-				echiquier[j][3] = new Case(new Reine(j, 3, couleur));
-				echiquier[j][4] = new Case(new Roi(j, 4, couleur));
-				echiquier[j][5] = new Case(new Fou(j, 5, couleur));
-				echiquier[j][6] = new Case(new Cavalier(j, 6, couleur));
-				echiquier[j][7] = new Case(new Tour(j, 7, couleur));
-			}
-
+		for (int j = 0; j < 8 ; j = j + 7) {
+			echiquier[j][0] = new Case(new Tour(j, 0, couleur));
+			echiquier[j][1] = new Case(new Cavalier(j, 1, couleur));
+			echiquier[j][2] = new Case(new Fou(j, 2, couleur));
+			echiquier[j][3] = new Case(new Reine(j, 3, couleur));
+			echiquier[j][4] = new Case(new Roi(j, 4, couleur));
+			echiquier[j][5] = new Case(new Fou(j, 5, couleur));
+			echiquier[j][6] = new Case(new Cavalier(j, 6, couleur));
+			echiquier[j][7] = new Case(new Tour(j, 7, couleur));
+			couleur = "noir";
 		}
 		
 

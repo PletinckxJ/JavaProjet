@@ -38,6 +38,7 @@ public class Case {
 			return false;
 		}
 	}
+
 	/**
 	 * Cette méthode renvoie les caractéristiques de la pièce appartenant à la case.
 	 * @return la pièce étant sur la case.

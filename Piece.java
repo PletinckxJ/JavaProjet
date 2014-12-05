@@ -108,7 +108,7 @@ public abstract class Piece {
 	 * @param c : la couleur de la pièce.
 	 */
 	public void setCouleur(String c) {
-		if ((couleur == "noir") || (couleur == "blanc")) {
+		if ((c == "noir") || (c == "blanc")) {
 			this.couleur = c;
 		}
 	}
