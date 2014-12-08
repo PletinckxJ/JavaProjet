@@ -4,8 +4,7 @@
 package projetJava;
 
 /**
- * 
- *	Cette classe est une classe pièce servant à définir les caractéristiques principales de chaque pièce d'un jeu d'échec.
+ * Cette classe est une classe pièce servant à définir les caractéristiques principales de chaque pièce d'un jeu d'échec.
  * @author HE201148
  */
 public abstract class Piece {
@@ -54,6 +53,11 @@ public abstract class Piece {
 	 * @return : vrai ou faux si le déplacement est possible ou non.
 	 */
 	abstract boolean deplacement(int l, int c);
+	
+	public boolean deplacementNul(int l, int c) {
+		return (l == getLigne() && c == getColonne());
+	}
+	
 	/**
 	 * Méthode renvoyant la valeur de ligne.
 	 * @return numéro de la ligne sur laquelle est la pièce.
@@ -77,7 +81,7 @@ public abstract class Piece {
 	}
 	/**
 	 * Méthode servant à définir le numéro de la colonne.
-	 * @param c : numéro de la colonne sur laquelle est la pièce (0 =< c >= 7).
+	 * @param l : numéro de la colonne sur laquelle est la pièce (0 =< c >= 7).
 	 */
 	public void setColonne(int c) {
 		this.colonne = c;

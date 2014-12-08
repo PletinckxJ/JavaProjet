@@ -4,7 +4,6 @@
 package projetJava;
 
 /**
- * 
  * Cette classe décrit une pièce de type Fou.
  * @author HE201148
  */
@@ -25,7 +24,7 @@ public class Fou extends Piece{
 	 */
 	public boolean deplacement(int l, int c) {
 		// Vérification de la positon d'arrivée étant bien dans le plateau (entre 0 et 7 donc).
-		if((0 <= l && l <= 7) && (0 <= c && c <= 7)) {
+		if((0 <= l && l <= 7) && (0 <= c && c <= 7) && !deplacementNul(l, c)) {
 			// On vérifie bien que le déplacement est en diagonale et non horizontal ou vertical.
 			return (Math.abs(l-getLigne()) == Math.abs(c-getColonne()));
 		} else {

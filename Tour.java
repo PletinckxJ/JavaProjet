@@ -4,7 +4,6 @@
 package projetJava;
 
 /**
- * 
  * Cette classe définit une pièce de type Tour.
  * @author HE201148
  */
@@ -26,7 +25,7 @@ public class Tour extends Piece{
 	 */
 	public boolean deplacement(int l, int c) {
 		// Vérification de la positon d'arrivée étant bien dans le plateau (entre 0 et 7 donc).
-		if((0 <= l && l <= 7) && (0 <= c && c <= 7)) {
+		if((0 <= l && l <= 7) && (0 <= c && c <= 7) && !deplacementNul(l, c)) {
 		// La tour ne se déplace que dans un sens, l'autre déplacement (horizontal ou vertical) se doit d'être 0 donc.
 		return ((l-getLigne())*(c-getColonne()) == 0);
 		} else {

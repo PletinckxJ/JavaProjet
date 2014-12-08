@@ -4,7 +4,6 @@
 package projetJava;
 
 /**
- *
  * Cette classe définit une pièce de type cavalier.
  * @author HE201148
  */
@@ -25,7 +24,7 @@ public class Cavalier extends Piece {
 	 */
 	public boolean deplacement(int l, int c) {
 		// Vérification de la positon d'arrivée étant bien dans le plateau (entre 0 et 7 donc).
-		if((0 <= l && l <= 7) && (0 <= c && c <= 7)) {
+		if((0 <= l && l <= 7) && (0 <= c && c <= 7) && !deplacementNul(l, c)) {
 			// On vérifie bien que le cavalier ne bouge que de deux cases horizontal et une verticale ou l'inverse.
 			return ((Math.abs(l-getLigne())) == 2 && (Math.abs(c-getColonne())) == 1) || ((Math.abs(l-getLigne())) == 1 && (Math.abs(c-getColonne())) == 2);
 		} else {

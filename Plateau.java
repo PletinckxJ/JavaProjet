@@ -34,11 +34,12 @@ public class Plateau {
 	 */
 	
 	public void initialiser() {
-		String couleur = new String("blanc");
+		String couleur = new String();
+		couleur = "noir";
 		// initialise les deux rangées de pions de différentes couleurs.
 		for(int i = 0; i < 8; i++) {
-		echiquier[1][i].setPiece(new Pion(1, i, "blanc"));
-		echiquier[6][i].setPiece(new Pion(6, i, "noir"));
+		echiquier[1][i].setPiece(new Pion(1, i, "noir"));
+		echiquier[6][i].setPiece(new Pion(6, i, "blanc"));
 		}
 		// Initialise les rangées de pièces spéciales dans les deux couleurs.
 		for (int j = 0; j < 8 ; j = j + 7) {
@@ -50,7 +51,7 @@ public class Plateau {
 			echiquier[j][5].setPiece(new Fou(j, 5, couleur));
 			echiquier[j][6].setPiece(new Cavalier(j, 6, couleur));
 			echiquier[j][7].setPiece(new Tour(j, 7, couleur));
-			couleur = "noir";
+			couleur = "blanc";
 		}
 		
 
@@ -66,7 +67,7 @@ public class Plateau {
 	public boolean chemin(int ligneDep, int colDep, int ligneArr, int colArr) {
 		Piece depart = echiquier[ligneDep][colDep].getPiece();
 		// Tout d'abord on regarde si la case d'arrive est prise ou non et si la pièce sur la case d'arrivée est de même couleur ou non
-		if (!echiquier[ligneArr][colArr].estPrise() || echiquier[ligneArr][colArr].getPiece().getCouleur() != depart.getCouleur()) { 
+		if ((!echiquier[ligneArr][colArr].estPrise() || echiquier[ligneArr][colArr].getPiece().getCouleur() != depart.getCouleur()) && depart.deplacement(ligneArr, colArr)) { 
 			// On vérifie que ce n'est pas un cavalier car il peut sauter au dessus des pièces.
 			if(!(depart instanceof Cavalier)) {
 				// On vérifie que la pièce n'est pas un pion car si ce n'est pas vérifié, le pion va agir comme un roi pour le programme.
@@ -88,7 +89,7 @@ public class Plateau {
 						deplacementX = 1;
 					}
 					// Vérification du chemin
-					for(int i = ligneDep + deplacementY, j = colDep + deplacementX; i < ligneArr || j < colArr; i += deplacementY, j += deplacementX) {
+					for(int i = ligneDep + deplacementY, j = colDep + deplacementX; i < ligneArr || j < colArr; i = i + deplacementY, j = j + deplacementX) {
 						if (echiquier[i][j].estPrise()) {
 							return false;
 						}
@@ -119,8 +120,7 @@ public class Plateau {
 		if (echiquier[ligneDep][colDep].getPiece() instanceof Pion) {
 			// On regarde que la pièce d'arrivée existe et est de couleur différente.
 			if ((echiquier[ligneArr][colArr].getPiece().getCouleur() != echiquier[ligneDep][colDep].getPiece().getCouleur()) && echiquier[ligneArr][colArr].estPrise()) {
-				return true;
-				
+				return ((ligneArr - ligneDep) * Math.abs(colArr - colDep)) == (echiquier[ligneDep][colDep].getPiece().getCouleur().equals("blanc") ? -1 : 1);
 			} 
 			// Sinon retourne faux.
 			return false;

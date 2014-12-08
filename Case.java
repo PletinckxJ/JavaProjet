@@ -4,7 +4,6 @@
 package projetJava;
 
 /**
- * 
  * Cette classe définit une case d'un plateau d'échec.
  * @author HE201148
  */
@@ -38,7 +37,6 @@ public class Case {
 			return false;
 		}
 	}
-
 	/**
 	 * Cette méthode renvoie les caractéristiques de la pièce appartenant à la case.
 	 * @return la pièce étant sur la case.

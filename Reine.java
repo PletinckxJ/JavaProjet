@@ -4,7 +4,6 @@
 package projetJava;
 
 /**
- * 
  * Classe qui décrit une pièce de type Reine.
  * @author HE201148
  */
@@ -25,7 +24,7 @@ public class Reine extends Piece {
 	 */
 	public boolean deplacement (int l, int c) {
 		// Vérification de la positon d'arrivée étant bien dans le plateau (entre 0 et 7 donc).
-		if((0 <= l && l <= 7) && (0 <= c && c <= 7)) {
+		if((0 <= l && l <= 7) && (0 <= c && c <= 7) && !deplacementNul(l, c)) {
 			// On vérifie bien que la reine suit le comportement du fou ou de la tour.
 			return (((l-getLigne())*(c-getColonne()) == 0)) || (Math.abs(l-getLigne()) == Math.abs(c-getColonne()));
 		} else {
