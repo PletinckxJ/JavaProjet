@@ -49,7 +49,7 @@ public class PanelInvite extends JPanel implements ActionListener {
 		this.repaint();
 		jeu.setBounds(0,0, 810,600);
 		jeu.getP().initialiser();
-		JLabel joueurDebut = new JLabel("     joueur en cours : " + getJoueur1().getText());
+		JLabel joueurDebut = new JLabel("   Joueur en cours : " + getJoueur1().getText());
 		jeu.setJoueur(joueurDebut);
 		jeu.setJoueur1(joueur1.getText());
 		jeu.setJoueur2(joueur2.getText());

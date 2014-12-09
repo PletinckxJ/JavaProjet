@@ -5,6 +5,7 @@ package projetJava;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,6 +33,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	private JPanel recup = new JPanel();
 	private GridLayout layoutRecup = new GridLayout();
 	private JLabel joueurEnCours = new JLabel();
+	private String joueur;
 	private String joueur1;
 	private String joueur2;
 	
@@ -118,85 +120,53 @@ public class PanelJeu extends JPanel implements ActionListener {
 				}
 			}
 		}
-		
-		if (p.getEchiquier()[ligneSelect][colonneSelect].estPrise() || pieceTransition != null) {
-			if (pieceTransition == null) {
-				if (p.getEchiquier()[ligneSelect][colonneSelect].getPiece().getCouleur().equals(couleurJoueur)) {
-					pieceTransition = p.getEchiquier()[ligneSelect][colonneSelect].getPiece();
-					imageTransition = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
-					tabButton[ligneSelect][colonneSelect].setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
-				}
-			} else {
-				if (p.chemin(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect) || p.capturePion(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect)) {
-					imageDead = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
-					tabLabel[ligneLabel][colonneLabel].setIcon(imageDead);
-					if (colonneLabel == 3) {
-						ligneLabel++;
-						colonneLabel = 0;
-					} else {
-						colonneLabel++;
-					}
-					if (p.getEchiquier()[ligneSelect][colonneSelect].getPiece() instanceof Roi) {
-						JOptionPane.showMessageDialog(null, "Vous avez gagné !", "Victoire !", JOptionPane.INFORMATION_MESSAGE);
-						System.exit(0);
-					} else {
-						p.getEchiquier()[pieceTransition.getLigne()][pieceTransition.getColonne()].setPiece(null);
-						tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setIcon(null);
-						tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setBorder(null);
-						couleurJoueur = couleurJoueur.equals("blanc") ? "noir" : "blanc";
-						p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
-						tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
-						pieceTransition = null;
-						imageTransition = null;
-						ligneSelect = 0;
-						colonneSelect = 0;
-					}
-				} else {
-					tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setBorder(null);
-					pieceTransition = null;
-					imageTransition = null;
-					ligneSelect = 0;
-					colonneSelect = 0;
-				}
-			}
-		}
-		
-		/*
-		if (p.getEchiquier()[ligneSelect][colonneSelect].estPrise() && p.getEchiquier()[ligneSelect][colonneSelect].getPiece().getCouleur().equals(couleurJoueur) 
+		if (pieceTransition != null && ((pieceTransition.getLigne() == ligneSelect) && (pieceTransition.getColonne() == colonneSelect))) {
+			tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setBorder(null);
+			pieceTransition = null;
+			imageTransition = null;
+		} else if (p.getEchiquier()[ligneSelect][colonneSelect].estPrise() && p.getEchiquier()[ligneSelect][colonneSelect].getPiece().getCouleur().equals(couleurJoueur) 
 			&& pieceTransition == null) {
 				pieceTransition = p.getEchiquier()[ligneSelect][colonneSelect].getPiece();
 				imageTransition = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
-				tabButton[ligneSelect][colonneSelect].setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0), 5));
-		} 
-		if (p.chemin(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect) 
-			|| p.capturePion(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect)) {
-				if (p.getEchiquier()[ligneSelect][colonneSelect].estPrise()) {
-					imageDead = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
-					tabLabel[ligneLabel][colonneLabel].setIcon(imageDead);
-					if (colonneLabel == 3) {
-						ligneLabel++;
-						colonneLabel = 0;
-					} else {
-						colonneLabel++;
-					}
-					if (p.getEchiquier()[ligneSelect][colonneSelect].getPiece() instanceof Roi) {
-						JOptionPane.showMessageDialog(null, "Vous avez gagné !", "Victoire !", JOptionPane.INFORMATION_MESSAGE);
-						System.exit(0);
-					} else {
-						p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
-						tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
-					}
-				} else {
-					p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
-					tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
+				tabButton[ligneSelect][colonneSelect].setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+		} else
+			try {
+				if (p.chemin(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect) 
+					|| p.capturePion(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect)) {
+						if (p.getEchiquier()[ligneSelect][colonneSelect].estPrise()) {
+							imageDead = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
+							tabLabel[ligneLabel][colonneLabel].setIcon(imageDead);
+							if (colonneLabel == 3) {
+								ligneLabel++;
+								colonneLabel = 0;
+							} else {
+								colonneLabel++;
+							}
+							if (p.getEchiquier()[ligneSelect][colonneSelect].getPiece() instanceof Roi) {
+								JOptionPane.showMessageDialog(null, "Echec et Mat !", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
+								System.exit(0);
+							} else {
+								p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
+								tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
+							}
+						} else {
+							p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
+							tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
+						}
+						p.getEchiquier()[pieceTransition.getLigne()][pieceTransition.getColonne()].setPiece(null);
+						tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setIcon(null);
+						tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setBorder(null);
+						p.getEchiquier()[ligneSelect][colonneSelect].getPiece().setLigne(ligneSelect);
+						p.getEchiquier()[ligneSelect][colonneSelect].getPiece().setColonne(colonneSelect);
+						pieceTransition = null;
+						imageTransition = null;
+						couleurJoueur = couleurJoueur.equals("blanc") ? "noir" : "blanc";
+						joueur = couleurJoueur.equals("blanc") ? joueur1 : joueur2;
+						joueurEnCours.setText("   Joueur en cours : " + joueur);
 				}
-				p.getEchiquier()[pieceTransition.getLigne()][pieceTransition.getColonne()].setPiece(null);
-				tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setIcon(null);
-				tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setBorder(null);
-				pieceTransition = null;
-				imageTransition = null;
-				couleurJoueur = couleurJoueur.equals("blanc") ? "noir" : "blanc";
-		}*/
+			} catch (Exception e) {
+				
+			}
 	}
 	
 	

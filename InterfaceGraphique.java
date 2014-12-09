@@ -3,10 +3,10 @@
  */
 package projetJava;
 
-import java.awt.*;
+
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
+
 
 /**
  * @author Thomas
@@ -14,9 +14,7 @@ import javax.swing.border.EtchedBorder;
  */
 public class InterfaceGraphique extends JFrame {
 
-	private Plateau echiquier;
 	private PanelInvite menu = new PanelInvite();
-	private PanelJeu jeu = new PanelJeu();
 	
 	public InterfaceGraphique() {
 		
@@ -24,10 +22,7 @@ public class InterfaceGraphique extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 810, 600);
 		
-		
 		getContentPane().add(menu);
-		
-		
 	}
 	
 	/**
