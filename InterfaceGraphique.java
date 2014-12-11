@@ -10,19 +10,22 @@ import javax.swing.*;
 
 /**
  * @author Thomas
- *	Cette classe sert à créer la fenêtre du programme ainsi qu'à contenir les panel d'invitation et de jeu.
+ * Cette classe sert Ã  crÃ©er la fenÃªtre du programme ainsi qu'Ã  contenir les panel d'invitation et de jeu.
+ *
  */
 public class InterfaceGraphique extends JFrame {
+
 	/**
-	 * Variable définissant un panel d'invitation.
+	 * Variable dÃ©finissant un panel d'invitation.
 	 */
 	private PanelInvite menu = new PanelInvite();
+	
 	/**
-	 * Méthode initialisant la fenêtre graphique et y ajoutant le panel d'invitation.
+	 * MÃ©thode initialisant la fenÃªtre graphique et y ajoutant le panel d'invitation.
 	 */
 	public InterfaceGraphique() {
 		
-		super("Jeu d'échec");
+		super("Jeu d'Ã©chec");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 810, 600);
 		
@@ -30,10 +33,10 @@ public class InterfaceGraphique extends JFrame {
 	}
 	
 	/**
-	 * @param args : paramètres de la ligne de commande.
+	 * @param args : paramï¿½tres de la ligne de commande.
 	 */
 	public static void main(String[] args) {
-		// Initialisation de la fenêtre du programme.
+		// Initialisation de la fenÃªtre du programme.
 		InterfaceGraphique frame = new InterfaceGraphique();
 		frame.setVisible(true);
 
