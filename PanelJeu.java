@@ -5,26 +5,23 @@ package projetJava;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  * @author Thomas
- *
+ *	Cette classe sert à gérer tout ce qui concerne le plateau de jeu.
  */
 public class PanelJeu extends JPanel implements ActionListener {
 	
-	 //Variables propres aux graphismes du panel 
+	//Variables propres aux graphismes du panel 
 	/*
 	 * Plateau de jeu servant à effectuer les opérations mathématiques.
 	 */
@@ -172,7 +169,9 @@ public class PanelJeu extends JPanel implements ActionListener {
 		}
 	}
 
-	
+	/**
+	 * Méthode servant à gérer les événements.
+	 */
 	public void actionPerformed(ActionEvent ev) {
 		// Variables servant à définir la ligne ainsi que la colonne sur lesquelles on a cliqué.
 		int ligneSelect = 0;
