@@ -33,7 +33,7 @@ public class InterfaceGraphique extends JFrame {
 	}
 	
 	/**
-	 * @param args : param�tres de la ligne de commande.
+	 * @param args : paramètres de la ligne de commande.
 	 */
 	public static void main(String[] args) {
 		// Initialisation de la fenêtre du programme.
