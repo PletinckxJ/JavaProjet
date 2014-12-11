@@ -105,6 +105,7 @@ public class Plateau {
 		} else 
 			// Si la case est prise ou que le pion est de même couleur, la méthode renvoie faux d'office.
 			return false;
+		
 	}
 	/**
 	 * Méthode se chargeant de dire si le pion peut prendre la pièce en diagonale.
@@ -118,15 +119,20 @@ public class Plateau {
 	public boolean capturePion(int ligneDep, int colDep, int ligneArr, int colArr) {
 		// On regarde que la pièce de départ est bien un pion.
 		if (echiquier[ligneDep][colDep].getPiece() instanceof Pion) {
-			// On regarde que la pièce d'arrivée existe et est de couleur différente.
-			if ((echiquier[ligneArr][colArr].getPiece().getCouleur() != echiquier[ligneDep][colDep].getPiece().getCouleur()) && echiquier[ligneArr][colArr].estPrise()) {
-				return ((ligneArr - ligneDep) * Math.abs(colArr - colDep)) == (echiquier[ligneDep][colDep].getPiece().getCouleur().equals("blanc") ? -1 : 1);
+			// On regarde si la case d'arrivée est bien prise (pour éviter le null)
+			if (echiquier[ligneArr][colArr].estPrise()) {
+				// On regarde que la pièce d'arrivée existe et est de couleur différente.
+				if (echiquier[ligneArr][colArr].getPiece().getCouleur() != echiquier[ligneDep][colDep].getPiece().getCouleur()) {
+					return ((ligneArr - ligneDep) * Math.abs(colArr - colDep)) == (echiquier[ligneDep][colDep].getPiece().getCouleur().equals("blanc") ? -1 : 1);
+				} 
+				// Sinon retourne faux.
+				return false;
 			} 
 			// Sinon retourne faux.
 			return false;
-		}
-		// Sinon retourne faux.
-		return false;
+			} else {
+				return false;
+			}
 	}
 	
 	/**
