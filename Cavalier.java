@@ -1,6 +1,7 @@
 /** Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package projetJava;
 
 /**
@@ -8,6 +9,7 @@ package projetJava;
  * @author HE201148
  */
 public class Cavalier extends Piece {
+	
 	/**
 	 * Constructeur du cavalier.
 	 * @param l : ligne de la pièce.
@@ -17,6 +19,7 @@ public class Cavalier extends Piece {
 	public Cavalier(int l, int c, String color) {
 		super(l, c, "Cavalier", color);
 	}
+	
 	/**
 	 * Cette méthode renvoie vrai si le cavalier bouge bien soit de deux cases verticales et une horizontale soit l'inverse. Sinon elle renvoie faux.
 	 * @param l : ligne d'arrivée de la pièce.

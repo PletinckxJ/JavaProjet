@@ -1,6 +1,7 @@
 /**Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package projetJava;
 
 /**
@@ -8,6 +9,7 @@ package projetJava;
  * @author HE201148
  */
 public class Fou extends Piece{
+	
 	/**
 	 * Constructeur du fou.
 	 * @param l : ligne de la pièce.
@@ -17,8 +19,9 @@ public class Fou extends Piece{
 	public Fou(int l, int c, String color) {
 		super(l, c, "Fou", color);
 	}
+	
 	/**
-	 * Cette méthode renvoie vrai si le déplacement du fou est bien en diagonal (le déplacement en x et y sont les mêmes) sinon il renvoie faux.
+	 * Cette méthode renvoie vrai si le déplacement du fou est bien en diagonal (le déplacement en x et y sont les mêmes) sinon elle renvoie faux.
 	 * @param l : ligne d'arrivée de la pièce.
 	 * @param c : colonne d'arrivée de la pièce.
 	 */
@@ -31,4 +34,5 @@ public class Fou extends Piece{
 			return false;
 		}
 	}
+	
 }

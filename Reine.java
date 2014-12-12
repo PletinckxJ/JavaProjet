@@ -1,6 +1,7 @@
 /**Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package projetJava;
 
 /**
@@ -8,6 +9,7 @@ package projetJava;
  * @author HE201148
  */
 public class Reine extends Piece {
+	
 	/**
 	 * Constructeur de la reine.
 	 * @param l : ligne de la pièce.
@@ -17,6 +19,7 @@ public class Reine extends Piece {
 	public Reine(int l, int c, String color) {
 		super(l, c, "Reine", color);
 	}
+	
 	/**
 	 * Méthode renvoyant vrai si la reine bouge bien comme une tour ou comme un fou.
 	 * @param l : ligne d'arrivée de la pièce.

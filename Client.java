@@ -1,6 +1,7 @@
 /**Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package reseau;
 
 import java.io.BufferedReader;
@@ -14,12 +15,14 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
+ * 
  * @author Thomas
- *
  */
 public class Client {
 
-	private static int port = 4330;
+	// Port choisi par la serveur, doit être communiqué IRL à l'utilisateur client par l'utilisateur serveur.
+	private static int port;
+	
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -42,7 +45,6 @@ public class Client {
 		in.close();
 		out.close();
 		socket.close();
-
 	}
 
 }

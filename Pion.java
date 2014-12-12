@@ -1,6 +1,7 @@
 /**Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package projetJava;
 
 /**
@@ -8,6 +9,7 @@ package projetJava;
  * @author HE201148
  */
 public class Pion extends Piece {
+	
 	/**
 	 * Constructeur du pion.
 	 * @param l : position sur une ligne.
@@ -17,6 +19,7 @@ public class Pion extends Piece {
 	public Pion(int l, int c, String color) {
 		super(l, c, "Pion", color );
 	}
+	
 	/**
 	 * Cette méthode renvoie vrai si le pion bouge d'une case ou deux vers l'avant et faux si il ne peut pas ou veut bouger à gauche ou à droite.
 	 * @param l : ligne d'arrivée de la pièce.
@@ -36,7 +39,6 @@ public class Pion extends Piece {
 		} else {
 			return false;
 		}
-		
 	}
 
 }

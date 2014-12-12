@@ -1,6 +1,7 @@
 /**Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package projetJava;
 
 /**
@@ -8,16 +9,19 @@ package projetJava;
  * @author HE201148
  */
 public class Case {
+	
 	/**
-	 * Variable définissant la pièce étant sur la case.
+	 * Variable privée définissant la pièce étant sur la case.
 	 */
 	private Piece piece;
+	
 	/**
 	 * Constructeur à nul, la case est sans pièce dessus (vide).
 	 */
 	public Case() {
 		setPiece(null);
 	}
+	
 	/**
 	 * Constructeur à variable donnée.
 	 * @param p : la pièce étant sur la case au départ.
@@ -37,6 +41,7 @@ public class Case {
 			return false;
 		}
 	}
+	
 	/**
 	 * Cette méthode renvoie les caractéristiques de la pièce appartenant à la case.
 	 * @return la pièce étant sur la case.
@@ -44,6 +49,7 @@ public class Case {
 	public Piece getPiece() {
 		return piece;
 	}
+	
 	/**
 	 * Cette méthode définit la pièce appartenant à la case.
 	 * @param p : la pièce de la case.
@@ -51,4 +57,5 @@ public class Case {
 	public void setPiece(Piece p) {
 		this.piece = p;
 	}
+	
 }

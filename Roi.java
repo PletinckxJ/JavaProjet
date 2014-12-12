@@ -1,6 +1,7 @@
 /** Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package projetJava;
 
 /**
@@ -8,6 +9,7 @@ package projetJava;
  * @author HE201148
  */
 public class Roi extends Piece {
+	
 	/**
 	 * Constructeur du roi.
 	 * @param l : ligne de la pièce.
@@ -17,6 +19,7 @@ public class Roi extends Piece {
 	public Roi(int l, int c, String color) {
 		super(l, c, "Roi", color);
 	}
+	
 	/**
 	 * Cette méthode renvoie vrai si le roi ne bouge que d'un en ligne, en colonne ou en diagonale, sinon elle renvoie faux.
 	 * @param l : ligne d'arrivée de la pièce.

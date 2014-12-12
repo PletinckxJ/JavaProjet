@@ -1,6 +1,7 @@
 /**Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package reseau;
 
 import java.io.BufferedReader;
@@ -18,7 +19,9 @@ import java.net.Socket;
  */
 public class Serveur {
 
-	private static int port = 4330;
+	// Port choisi par l'utilisateur.
+	private static int port;
+	
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -39,6 +42,7 @@ public class Serveur {
 			System.out.println("ECHO = " + str); // trace locale
 			out.println(str); // renvoi d'un écho
 		}
+		
 		in.close();
 		out.close();
 		soc.close();

@@ -9,18 +9,21 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
+ * Cette classe sert à créer un panel d'invitation ainsi qu'à créer le panel de jeu.
  * @author Thomas
- *	Cette classe sert à créer un panel d'invitation ainsi qu'à créer le panel de jeu.
  */
 public class PanelInvite extends JPanel implements ActionListener {
+	
 	/**
 	 * Premier joueur à être encodé.
 	 */
 	private JTextField joueur1 = new JTextField();
+	
 	/**
 	 * Deuxième joueur à être encodé.
 	 */
 	private JTextField joueur2 = new JTextField();
+	
 	/**
 	 * Méthode initialisant l'interface graphique de la fenêtre d'invitation.
 	 */
@@ -73,8 +76,7 @@ public class PanelInvite extends JPanel implements ActionListener {
 		jeu.initialisation();
 		// Ajout du panel de jeu.
 		this.add(jeu);
-		
-		}
+	}
 
 	/**
 	 * Méthode renvoyant le nom du joueur 1.
@@ -83,6 +85,7 @@ public class PanelInvite extends JPanel implements ActionListener {
 	public JTextField getJoueur1() {
 		return joueur1;
 	}
+	
 	/**
 	 * Méthode renvoyant le nom du joueur 2.
 	 * @return : le nom du joueur 2.

@@ -1,6 +1,7 @@
 /** Cette classe a été créée pour le projet de java par T.Pické et J.Pletinckx.
  * 
  */
+
 package projetJava;
 
 /**
@@ -9,10 +10,12 @@ package projetJava;
  * @author HE201148
  */
 public class Plateau {
+	
 	/**
 	 * Tableau contenant les 64 cases de l'échiquier (8 lignes et 8 colonnes).
 	 */
 	private Case[][] echiquier = new Case[8][8];
+	
 	/**
 	 * Constructeur à nul.
 	 */
@@ -22,6 +25,7 @@ public class Plateau {
 			for (int colonne = 0; colonne <= 7; colonne++)
 				echiquier[ligne][colonne] = new Case();
 	}
+	
 	/**
 	 * Constructeur à variable donnée.
 	 * @param e : le plateau de jeu.
@@ -29,17 +33,17 @@ public class Plateau {
 	public Plateau(Case[][] e) {
 		setEchiquier(e);
 	}
+	
 	/**
 	 * Méthode initialisant le plateau de jeu.
 	 */
-	
 	public void initialiser() {
 		String couleur = new String();
 		couleur = "noir";
 		// initialise les deux rangées de pions de différentes couleurs.
 		for(int i = 0; i < 8; i++) {
-		echiquier[1][i].setPiece(new Pion(1, i, "noir"));
-		echiquier[6][i].setPiece(new Pion(6, i, "blanc"));
+			echiquier[1][i].setPiece(new Pion(1, i, "noir"));
+			echiquier[6][i].setPiece(new Pion(6, i, "blanc"));
 		}
 		// Initialise les rangées de pièces spéciales dans les deux couleurs.
 		for (int j = 0; j < 8 ; j = j + 7) {
@@ -53,9 +57,8 @@ public class Plateau {
 			echiquier[j][7].setPiece(new Tour(j, 7, couleur));
 			couleur = "blanc";
 		}
-		
-
 	}
+	
 	/**
 	 * Méthode se chargeant de dire si le chemin de mouvement de la pièce est correct ou non.
 	 * @param ligneDep : position de la ligne de départ.
@@ -94,19 +97,18 @@ public class Plateau {
 							return false;
 						}
 					}
-					return true;
-						
+					return true;	
 				} else 
-				// Si c'est un pion, on vérifie que le chemin d'arrivée est pris ou pas par un pion peu importe sa couleur.
-				return !echiquier[ligneArr][colArr].estPrise();
+					// Si c'est un pion, on vérifie que le chemin d'arrivée est pris ou pas par un pion peu importe sa couleur.
+					return !echiquier[ligneArr][colArr].estPrise();
 			} else 
-			// Le cavalier peut sauter au dessus des pions de son équipe.
-			return true;
+				// Le cavalier peut sauter au dessus des pions de son équipe.
+				return true;
 		} else 
 			// Si la case est prise ou que le pion est de même couleur, la méthode renvoie faux d'office.
 			return false;
-		
 	}
+	
 	/**
 	 * Méthode se chargeant de dire si le pion peut prendre la pièce en diagonale.
 	 * @param ligneDep : position de la ligne de départ.
@@ -115,7 +117,6 @@ public class Plateau {
 	 * @param colArr : position de la colonne d'arrivée.
 	 * @return vrai si le pion peut s'emparer de la pièce, faux sinon.
 	 */
-	
 	public boolean capturePion(int ligneDep, int colDep, int ligneArr, int colArr) {
 		// On regarde que la pièce de départ est bien un pion.
 		if (echiquier[ligneDep][colDep].getPiece() instanceof Pion) {
@@ -130,9 +131,9 @@ public class Plateau {
 			} 
 			// Sinon retourne faux.
 			return false;
-			} else {
-				return false;
-			}
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -142,6 +143,7 @@ public class Plateau {
 	public Case[][] getEchiquier() {
 		return echiquier;
 	}
+	
 	/**
 	 * Méthode définissant les 64 cases de l'échiquier.
 	 * @param e : les 64 cases de l'échiquier.

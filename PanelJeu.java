@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 package projetJava;
 
 import java.awt.Color;
@@ -16,52 +17,62 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
+ * Cette classe sert à gérer tout ce qui concerne le plateau de jeu.
  * @author Thomas
- *	Cette classe sert à gérer tout ce qui concerne le plateau de jeu.
  */
 public class PanelJeu extends JPanel implements ActionListener {
 	
-	//Variables propres aux graphismes du panel 
-	/*
+	// Variables propres aux graphismes du panel 
+	/**
 	 * Plateau de jeu servant à effectuer les opérations mathématiques.
 	 */
 	private Plateau p = new Plateau();
-	/*
+	
+	/**
 	 * Panel servant à contenir le plateau d'échec
 	 */
 	private	JPanel plateau = new JPanel();
-	/*
+	
+	/**
 	 * Layout servant à la construction du plateau d'échec.
 	 */
 	private GridLayout layout = new GridLayout();
+	
 	/**
 	 * Tableau de boutons représentant les cases du plateau.
 	 */
 	private JButton[][] tabButton;
+	
 	/**
 	 * Tableau de label servant à récupérer les pièces mortes.
 	 */
 	private JLabel[][] tabLabel;
+	
 	/**
 	 * Panel servant à prendre les autres éléments graphiques, comme le nom du joueur en cours.
 	 */
 	private JPanel recup = new JPanel();
+	
 	/**
 	 * Layout servant pour le tableau de récupération des pièces mortes.
 	 */
 	private GridLayout layoutRecup = new GridLayout();
+	
 	/**
 	 * Label servant à indiquer le joueur en cours.
 	 */
 	private JLabel joueurEnCours = new JLabel();
+	
 	/**
 	 * Nom du joueur en cours.
 	 */
 	private String joueur;
+	
 	/**
 	 * Premier joueur de la partie.
 	 */
 	private String joueur1;
+	
 	/**
 	 * Deuxième joueur de la partie.
 	 */
@@ -72,26 +83,32 @@ public class PanelJeu extends JPanel implements ActionListener {
 	 * Variable statiques servant à définir sur quelle ligne va aller la prochaine pièce morte.
 	 */
 	private static int ligneLabel = 0;
+	
 	/**
 	 * Variable statiques servant à définir sur quelle colonne va aller la prochaine pièce morte.
 	 */
 	private static int colonneLabel = 0;
+	
 	/**
 	 * Variable servant à conserver la valeur de la pièce faisant le mouvement.
 	 */
 	private Piece pieceTransition = null;
+	
 	/**
 	 * Variable servant à conserver l'image graphique de la pièce faisant le mouvement.
 	 */
 	private ImageIcon imageTransition = null;
+	
 	/**
 	 * Variable servant à conserver l'image graphique de la pièce morte.
 	 */
 	private ImageIcon imageDead;
+	
 	/**
 	 * Couleur du premier joueur à jouer.
 	 */
 	private String couleurJoueur = "blanc";
+	
 	/**
 	 * Constructeur initialisant toute l'interface graphique du jeu d'échec.
 	 */
@@ -120,6 +137,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 				}
 			}
 		}
+		
 		// Initialisation du layout de récuparation des pièces mortes.
 		layoutRecup.setColumns(4);
 		layoutRecup.setRows(8);
@@ -146,12 +164,15 @@ public class PanelJeu extends JPanel implements ActionListener {
 		this.add(recup);
 	}
 	
+	/**
+	 * Méthode qui prépare le plateau de jeu pour commencer la partie (placement des icones).
+	 */
 	public void initialisation() {
 		// Création d'un string servant à définir la couleur choisie pour l'initialisation des boutons.
 		String c = new String();
 		c = "N";
 		for (int i = 0; i < 8; i++) {
-			// Pour chaque colonne de pion, ajout des images des pièces aux couleurs correspondantes.
+			// Pour chaque ligne de pion, ajout des images des pièces aux couleurs correspondantes.
 			getTabButton()[1][i].setIcon(new ImageIcon("Icone/PN.gif"));
 			getTabButton()[6][i].setIcon(new ImageIcon("Icone/PB.gif"));
 		}
@@ -197,56 +218,54 @@ public class PanelJeu extends JPanel implements ActionListener {
 				imageTransition = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
 				tabButton[ligneSelect][colonneSelect].setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
 		
-		} else
-				// Si l'on veut faire un déplacement de la pièce vers un autre endroit.
-				if (pieceTransition != null && (p.chemin(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect) 
-					|| p.capturePion(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect)) ) {
-						// Si la case d'arrivée est prise.
-						if (p.getEchiquier()[ligneSelect][colonneSelect].estPrise()) {
-							// La pièce qui va être prise se met dans le tableau de label prévu à cet effet.
-							imageDead = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
-							tabLabel[ligneLabel][colonneLabel].setIcon(imageDead);
-							// Incrémentation automatique de la position de la prochaine pièce morte.
-							if (colonneLabel == 3) {
-								ligneLabel++;
-								colonneLabel = 0;
-							} else {
-								colonneLabel++;
-							}
-							// Si la pièce qui va être prise est un roi, le jeu s'arrête.
-							if (p.getEchiquier()[ligneSelect][colonneSelect].getPiece() instanceof Roi) {
-								JOptionPane.showMessageDialog(null, "Echec et Mat !", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
-								System.exit(0);
-							// Si ce n'est pas un roi, la pièce d'arrivée est prise et la pièce choisie prend sa place.
-							} else {
-								p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
-								tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
-							}
-						// Si la case est vide, la pièce prend sa place.
+		} else {
+			// Si l'on veut faire un déplacement de la pièce vers un autre endroit.
+			if (pieceTransition != null && (p.chemin(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect) 
+				|| p.capturePion(pieceTransition.getLigne(), pieceTransition.getColonne(), ligneSelect, colonneSelect)) ) {
+					// Si la case d'arrivée est prise.
+					if (p.getEchiquier()[ligneSelect][colonneSelect].estPrise()) {
+						// La pièce qui va être prise se met dans le tableau de label prévu à cet effet.
+						imageDead = (ImageIcon)tabButton[ligneSelect][colonneSelect].getIcon();
+						tabLabel[ligneLabel][colonneLabel].setIcon(imageDead);
+						// Incrémentation automatique de la position de la prochaine pièce morte.
+						if (colonneLabel == 3) {
+							ligneLabel++;
+							colonneLabel = 0;
+						} else {
+							colonneLabel++;
+						}
+						// Si la pièce qui va être prise est un roi, le jeu s'arrête.
+						if (p.getEchiquier()[ligneSelect][colonneSelect].getPiece() instanceof Roi) {
+							JOptionPane.showMessageDialog(null, "Echec et Mat !", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
+							System.exit(0);
+						// Si ce n'est pas un roi, la pièce d'arrivée est prise et la pièce choisie prend sa place.
 						} else {
 							p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
 							tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
 						}
-						// Suppression de l'ancienne position de la pièce qui a fait un déplacement.
-						p.getEchiquier()[pieceTransition.getLigne()][pieceTransition.getColonne()].setPiece(null);
-						tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setIcon(null);
-						tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setBorder(null);
-						// Changement des coordonnées de position de la pièce ayant bougée.
-						p.getEchiquier()[ligneSelect][colonneSelect].getPiece().setLigne(ligneSelect);
-						p.getEchiquier()[ligneSelect][colonneSelect].getPiece().setColonne(colonneSelect);
-						// Remise à nul des variables servant à faire les déplacements.
-						pieceTransition = null;
-						imageTransition = null;
-						// Changement de la couleur en cours.
-						couleurJoueur = couleurJoueur.equals("blanc") ? "noir" : "blanc";
-						// Changement du joueur en cours.
-						joueur = couleurJoueur.equals("blanc") ? joueur1 : joueur2;
-						joueurEnCours.setText("   Joueur en cours : " + joueur);
-				}
+					// Si la case est vide, la pièce prend sa place.
+					} else {
+						p.getEchiquier()[ligneSelect][colonneSelect].setPiece(pieceTransition);
+						tabButton[ligneSelect][colonneSelect].setIcon(imageTransition);
+					}
+					// Suppression de l'ancienne position de la pièce qui a fait un déplacement.
+					p.getEchiquier()[pieceTransition.getLigne()][pieceTransition.getColonne()].setPiece(null);
+					tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setIcon(null);
+					tabButton[pieceTransition.getLigne()][pieceTransition.getColonne()].setBorder(null);
+					// Changement des coordonnées de position de la pièce ayant bougée.
+					p.getEchiquier()[ligneSelect][colonneSelect].getPiece().setLigne(ligneSelect);
+					p.getEchiquier()[ligneSelect][colonneSelect].getPiece().setColonne(colonneSelect);
+					// Remise à nul des variables servant à faire les déplacements.
+					pieceTransition = null;
+					imageTransition = null;
+					// Changement de la couleur en cours.
+					couleurJoueur = couleurJoueur.equals("blanc") ? "noir" : "blanc";
+					// Changement du joueur en cours.
+					joueur = couleurJoueur.equals("blanc") ? joueur1 : joueur2;
+					joueurEnCours.setText("   Joueur en cours : " + joueur);
+			}
+		}
 	}
-	
-	
-	
 	
 	/**
 	 * Méthode servant à avoir la valeur du tableau de boutons (l'échiquier).
@@ -255,6 +274,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public JButton[][] getTabButton() {
 		return tabButton;
 	}
+	
 	/**
 	 * Méthode servant à changer la valeur du tableau de boutons (l'échiquier).
 	 * @param tabButton : l'échiquier graphique.
@@ -262,6 +282,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public void setTabButton(JButton[][] tabButton) {
 		this.tabButton = tabButton;
 	}
+	
 	/**
 	 * Méthode Renvoyant la plateau servant à faire les opérations mathématique.
 	 * @return l'échiquier propre à la machine (servant aux opérations de mouvement).
@@ -269,6 +290,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public Plateau getP() {
 		return p;
 	}
+	
 	/**
 	 * Méthode servant à définir la valeur de plateau mathématique.
 	 * @param echiquier : l'échiquier propre à la machine (servant aux opérations de mouvement).
@@ -276,6 +298,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public void setP(Plateau echiquier) {
 		this.p = echiquier;
 	}
+	
 	/**
 	 * Méthode renvoyant le joueur en cours.
 	 * @return : le joueur en cours.
@@ -283,6 +306,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public JLabel getJoueur() {
 		return joueurEnCours;
 	}
+	
 	/**
 	 * Méthode définissant le joueur en cours.
 	 * @param joueur : le joueur en cours.
@@ -290,6 +314,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public void setJoueur(JLabel joueur) {
 		this.joueurEnCours.setText(joueur.getText());
 	}
+	
 	/**
 	 * Méthode renvoyant le joueur 1 de la partie.
 	 * @return : le premier joueur de la partie.
@@ -297,6 +322,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public String getJoueur1() {
 		return joueur1;
 	}
+	
 	/**
 	 * Méthode définissant le premier joueur de la partie.
 	 * @param joueur1 : le premier joueur de la partie.
@@ -304,6 +330,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public void setJoueur1(String joueur1) {
 		this.joueur1 = joueur1;
 	}
+	
 	/**
 	 * Méthode renvoyant le joueur 2 de la partie.
 	 * @return : le deuxième joueur de la partie.
@@ -311,6 +338,7 @@ public class PanelJeu extends JPanel implements ActionListener {
 	public String getJoueur2() {
 		return joueur2;
 	}
+	
 	/**
 	 * Méthode définissant le deuxième joueur de la partie.
 	 * @param joueur1 : le deuxième joueur de la partie.
